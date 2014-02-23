@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="main-navbar">
-      <h1>Menishi</h1>
+      <h1> Menishi</h1>
     </div>
   </body>
 </html>

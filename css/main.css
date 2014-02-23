@@ -1,3 +1,4 @@
+/* How about black and yellow for menus */
 * {
   margin:0;
   padding:0;
@@ -5,15 +6,18 @@
 
 body {
   font-family: 'Varela Round', sans-serif;
-  background-color: #87CEFA; /* Sky Blue */
+  background-color: #EEEEEE; /* Sky Blue */
 }
 
 #main-navbar {
   width: 100%;
-  background-color:#251607; /* Graphite */
-  color:white;
+  background-color:#2A2C30; /* Graphite */
+  color: #EEEEEE;
+  padding-left:10px;
+  padding-top:5px;
+  height:2.5em;
 }
 
-#main-navbar > h1 {
+h1#main-navbar {
   font-size: 22px;
 }

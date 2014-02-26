@@ -8,9 +8,15 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   </head>
   <body>
-    <div id="main-navbar">
-      <h1> Menishi</h1>
-    </div>
+    <nav class="group">
+      <div id="first-item">
+          <span id="first-item" class="sliding-select"><h1>Home</h1></span>
+      </div>
+      <div>
+        <a href="#"><span class="sliding-select"><h1>Projects</h2></span></a>
+      </div>
+      </ul>
+    </nav>
   </body>
 </html>
 

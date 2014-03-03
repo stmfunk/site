@@ -15,6 +15,15 @@
       <div>
         <a href="#"><span class="sliding-select"><h1>Projects</h2></span></a>
       </div>
+      <div>
+        <a href="#"><span class="sliding-select"><h1>Downloads</h2></span></a>
+      </div>
+      <div>
+        <a href="#"><span class="sliding-select"><h1>Wiki</h2></span></a>
+      </div>
+      <div>
+        <a href="#"><span class="sliding-select"><h1>Blog</h2></span></a>
+      </div>
       </ul>
     </nav>
   </body>

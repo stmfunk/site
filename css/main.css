@@ -23,9 +23,9 @@ h1{
 }
 
 nav{
+  text-align:center;
   font-family: 'Prosto One', sans-serif;
-  width: 100%;
-  background-color:#191919; /* Graphite */
+  background-color:#DD4400; /* Graphite */
   color: #EEEEEE;
   padding: 5px 0 0 10%;
   position:relative;
@@ -34,14 +34,14 @@ nav{
 /* BOTTOM TO TOP */
 .sliding-select {
   float:left;
-  padding: 0 0 4px 0;
+  padding: 0 12px 4px 13px;
   cursor:pointer;
   margin:0 2.5% 0 0;
   display: inline-block;
   position: relative;
-  transition: all ease 0.2s;
+  transition: all ease-out 0.2s;
 } .sliding-select:hover {
-  color:yellow;
+  color:#000000;
 }
 .sliding-select:after {
   content: '';
@@ -53,11 +53,11 @@ nav{
   background: transparent;
   -webkit-transition: all ease 0.2s;
   -moz-transition: all ease 0.2s;
-  transition: all ease 0.2s;
+  transition: all ease-out 0.2s;
 }
 .sliding-select:hover:after {
-  height: 3px;
-  background: yellow;
+  height: 4px;
+  background:#000000;
 }
 .group:before,
 .group:after {

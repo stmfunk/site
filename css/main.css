@@ -70,3 +70,17 @@ nav{
 .group {
   zoom: 1;
 }
+
+img {
+  width:300px;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+}
+
+#owl-example {
+  width:30%;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}

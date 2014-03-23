@@ -2,8 +2,10 @@ $(document).ready(function() {
   var owl = $("#sliderDiv");
   owl.owlCarousel({
     singleItem:true,
+    autoPlay:3000,
+    stopOnHover:true,
     slideSpeed:900,
-    autoHeight: true
+    autoHeight: false
   });
 
   $('#slide-prev').click(function() {
@@ -13,4 +15,5 @@ $(document).ready(function() {
   $('#slide-next').click(function() {
     owl.trigger('owl.next');
   });
+  $(".owl-controls").remove()
 });

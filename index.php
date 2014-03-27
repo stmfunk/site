@@ -31,9 +31,7 @@
       </div>
     </div>
     <?php 
-      if (mysql_connect('localhost', 'donal','superbowl1984') == false) {
-        echo "<br />fishpope<br />";
-      }
+      echo mysqli_connect('localhost', 'stm', 'nomsat00colon00','fish') ? "yes" : "no";
     ?>
   </body>
 </html>

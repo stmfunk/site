@@ -30,5 +30,10 @@
         <span class="vcenter">Prev</span>
       </div>
     </div>
+    <?php 
+      if (mysql_connect('localhost', 'donal','superbowl1984') == false) {
+        echo "<br />fishpope<br />";
+      }
+    ?>
   </body>
 </html>

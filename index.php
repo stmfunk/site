@@ -31,7 +31,7 @@
       </div>
     </div>
     <?php 
-      echo mysqli_connect('localhost', 'stm', 'nomsat00colon00','fish') ? "yes" : "no";
+      echo mysqli_connect('localhost', 'donal', 'superbowl1984', 'fish') ? "yes" : "no";
     ?>
   </body>
 </html>

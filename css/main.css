@@ -46,7 +46,9 @@ nav {
   display: inline-block;
   position: relative;
   transition: all ease-out 0.2s;
-} .sliding-select:hover {
+} 
+
+.sliding-select-hover {
   color:#000000;
 }
 .sliding-select:after {
@@ -61,9 +63,15 @@ nav {
   -moz-transition: all ease 0.2s;
   transition: all ease-out 0.2s;
 }
-.sliding-select:hover:after {
+
+.sliding-select-under-black:after {
   height: 4px;
   background:#000000;
+}
+
+.sliding-select-under-white:after {
+  height: 4px;
+  background-color: #EEEEEE;
 }
 
 

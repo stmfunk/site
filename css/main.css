@@ -1,5 +1,6 @@
 /* How about orange and black for menus */
 @import url(http://fonts.googleapis.com/css?family=Prosto+One);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100);
 
 * {
   margin:0;
@@ -147,3 +148,43 @@ img.watson {
 .owlDivs {
  height: 500px;
 }
+
+
+/* Blog article styling */
+article.blog {
+   width:50%;
+   margin:0 auto;
+   margin-top:20px;
+   font-family:Verdana;
+   background-color:white;
+   border-radius:4px;
+   border:1px solid #E6E6E6;
+   padding: 10px 20px 20px 20px;
+}
+
+article.blog > header {
+   margin-bottom:16px;
+}
+
+article.blog > header > h1 {
+   font-family: 'Roboto',Verdana;
+   font-size:29px;
+   width:90%;
+}
+
+
+article.blog .author {
+   color:#BBBBBB;
+   font-size:13px;
+   margin-left:10px;
+}
+
+article.blog .author a:hover {
+   text-decoration:underline;
+}
+
+article.blog > p {
+   font-size:14px;
+   color:#666666;
+}
+

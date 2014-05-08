@@ -1,6 +1,7 @@
 $(document).ready(function() {
-   console.log('#'+tab_id);
-  $('#'+tab_id).addClass('sliding-select-under-white');
+  var tab = $('#'+tab_id);
+  tab.addClass('sliding-select-under-white');
+  tab.attr("href","javascript:void(0)");
 
   // All carousel stuff
   var owl = $("#sliderDiv");
@@ -29,5 +30,3 @@ $(document).ready(function() {
      $(this).toggleClass('sliding-select-under-black');
   });
 });
-
-

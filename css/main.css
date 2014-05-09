@@ -1,6 +1,6 @@
 /* How about orange and black for menus */
-@import url(http://fonts.googleapis.com/css?family=Prosto+One);
-@import url(http://fonts.googleapis.com/css?family=Roboto:100);
+@import url(//fonts.googleapis.com/css?family=Prosto+One);
+@import url(//fonts.googleapis.com/css?family=Roboto:100);
 
 * {
   margin:0;
@@ -175,6 +175,7 @@ article.blog > header > h1 {
 
 article.blog .author {
    color:#BBBBBB;
+   padding-top:0px;
    font-size:13px;
    margin-left:10px;
 }

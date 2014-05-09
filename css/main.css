@@ -180,7 +180,7 @@ article.blog .author {
    margin-left:10px;
 }
 
-article.blog .author a:hover {
+article.blog a:hover {
    text-decoration:underline;
 }
 

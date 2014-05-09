@@ -35,7 +35,7 @@
 
             public function articleQuery($keyVal=array(),$num=0) {
                
-               $nullArticle = array(new Article(array("title"=>"None","author"=>"NONE", "author_url"=>"#","date"=>"NONE","content"=>"NONE")));
+               $nullArticle = array(new Article(array("title"=>"None","author"=>"NONE", "author_url"=>"#","id"=>"0","date"=>"NONE","content"=>"NONE")));
                if ($this->mysqlO->query("SELECT * FROM articles") == false){
                   $this->mysqlO->query("CREATE TABLE articles (id MEDIUMINT AUTO_INCREMENT NOT NULL, title VARCHAR(100) NOT NULL,author VARCHAR(50), author_url VARCHAR(80) DEFAULT \"#\",date DATETIME NOT NULL, content TEXT, PRIMARY KEY(id))");
                   return $nullArticle;
@@ -94,14 +94,13 @@
                $this->date = $vals['date'];
                $this->content = $vals['content'];
                $this->id = $vals['id'];
-
             }
 
             public function __toString() {
                $string = "";
                $string .= "<article class=\"blog\" id=\"{$this->id}\">\n";
                $string .= "   <header>\n";
-               $string .= "      <h1>{$this->title}</h1>\n";
+               $string .= "      <h1><a href=\"/blog?id=$this->id\">{$this->title}</a></h1>\n";
                $string .= "      <span class=\"author\">By <a rel=\"author\" href=\"{$this->author_url}\">{$this->author}</a></span>\n";
                $string .= "   </header>\n";
                $string .= "   <p>{$this->content}</p>\n";

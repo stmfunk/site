@@ -12,10 +12,7 @@
             public $dbError;
 
             public function __construct($db) {
-               global $dbFile;
-               $dbPass = file_get_contents($dbFile);
-               $dbPass = trim($dbPass);
-
+               global $dbPass;
                $this->id = $id;
 
                // Check for and create database if it does

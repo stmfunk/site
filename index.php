@@ -4,6 +4,7 @@
       <title>Menishi</title>
       <script>var tab_id="home";</script>
       <link rel="icon" href="favicon.png" type="image/x-icon" />
+      <meta name="wot-verification" content="f55b34ebdca16ff3ff70"/>
       <?php
          include('includes.php');
       ?>

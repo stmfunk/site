@@ -9,6 +9,7 @@
 
          class dbManager {
             public $mysqlO;
+            public $nullArticle;
             public $dbError;
 
             public function __construct($db) {
@@ -17,6 +18,7 @@
 
                // Check for and create database if it does
                // not exist.
+               $this->nullArticle = new Article(array("title"=>"None","author"=>"NONE", "author_url"=>"#","id"=>"0","date"=>"NONE","content"=>"NONE"));
                $this->mysqlO = new mysqli('localhost','site',$dbPass);
                if ($this->mysqlO->connect_errno) {
                   echo $mysqlO->connect_error;
@@ -35,10 +37,9 @@
 
             public function articleQuery($keyVal=array(),$num=0) {
                
-               $nullArticle = array(new Article(array("title"=>"None","author"=>"NONE", "author_url"=>"#","id"=>"0","date"=>"NONE","content"=>"NONE")));
                if ($this->mysqlO->query("SELECT * FROM articles") == false){
                   $this->mysqlO->query("CREATE TABLE articles (id MEDIUMINT AUTO_INCREMENT NOT NULL, title VARCHAR(100) NOT NULL,author VARCHAR(50), author_url VARCHAR(80) DEFAULT \"#\",date DATETIME NOT NULL, content TEXT, PRIMARY KEY(id))");
-                  return $nullArticle;
+                  return array($this->nullArticle);
                }
 
                // Key value as a date is split using 
@@ -73,9 +74,22 @@
                  }
                }
                if ($i == -1) {
-                  return $nullArticle;
+                  return array($this->nullArticle);
                }
                return $articles;
+            }
+
+            public function getArticleById($id) {
+               $query = "SELECT * FROM articles WHERE id = ?";
+               $query = $this->mysqlO->prepare($query);
+               $query->bind_param("i",$id);
+               $query->execute();
+               $res = $query->get_result();
+               $res = $res->fetch_assoc();
+               if ($res !== NULL)
+                  return new Article ($res);
+               else return $this->nullArticle;
+
             }
          }
 
@@ -115,9 +129,14 @@
       <?php 
          include("../main-nav.php");
          $db = new dbManager("blog");
-         $articles = $db->articleQuery();
-         foreach ($articles as $article) {
+         if (in_array('id',array_keys($_GET)) !== false) {
+            $article = $db->getArticleById($_GET['id']);
             echo "\n      ".join("\n      ",array_slice(split("\n",$article),0,-1))."\n\n";
+         } else {
+            $articles = $db->articleQuery();
+            foreach ($articles as $article) {
+               echo "\n      ".join("\n      ",array_slice(split("\n",$article),0,-1))."\n\n";
+            }
          }
       ?>
    </body>

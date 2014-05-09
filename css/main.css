@@ -163,25 +163,28 @@ article.blog {
 }
 
 article.blog > header {
-   margin-bottom:16px;
+   margin-bottom:10px;
 }
 
 article.blog > header > h1 {
    font-family: 'Roboto',Verdana;
+   display:inline;
    font-size:29px;
    width:90%;
+   margin-bottom:3px;
 }
 
 
 article.blog .author {
    color:#BBBBBB;
-   padding-top:0px;
+   padding:0px;
+   float:right;
    font-size:13px;
    margin-left:10px;
 }
 
 article.blog a:hover {
-   text-decoration:underline;
+  border-bottom: 1px solid;
 }
 
 article.blog > p {

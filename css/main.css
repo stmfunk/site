@@ -151,13 +151,20 @@ img.watson {
 
 
 /* Blog article styling */
+
+section.blog-posts {
+   width:70%;
+   margin:0 0 0 auto;
+   padding-top:20px;
+}
+
+
 article.blog {
-   width:50%;
+   width:90%;
    margin:0 auto;
-   margin-top:20px;
    font-family:Verdana;
    background-color:white;
-   border-radius:4px;
+   box-shadow: 3px 3px 7px #888888;
    border:1px solid #E6E6E6;
    padding: 10px 20px 20px 20px;
 }

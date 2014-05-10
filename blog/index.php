@@ -129,15 +129,17 @@
       <?php 
          include("../main-nav.php");
          $db = new dbManager("blog");
+         echo "      <section class=\"blog-posts\">";
          if (in_array('id',array_keys($_GET)) !== false) {
             $article = $db->getArticleById($_GET['id']);
-            echo "\n      ".join("\n      ",array_slice(split("\n",$article),0,-1))."\n\n";
+            echo "\n         ".join("\n         ",array_slice(split("\n",$article),0,-1))."\n\n";
          } else {
             $articles = $db->articleQuery();
             foreach ($articles as $article) {
-               echo "\n      ".join("\n      ",array_slice(split("\n",$article),0,-1))."\n\n";
+               echo "\n         ".join("\n         ",array_slice(split("\n",$article),0,-1))."\n\n";
             }
          }
+         echo "      </section>\n";
       ?>
    </body>
 </html>

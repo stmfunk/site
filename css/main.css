@@ -23,10 +23,10 @@ h1 {
   font-size: 25px;
 }
 
-nav {
+nav.main {
   text-align:center;
   background-color:#DD4400; 
-  color: #EEEEEE;
+  color: white;
   padding: 5px 0 0 10%;
   position:relative;
 }
@@ -151,21 +151,51 @@ img.watson {
 
 
 /* Blog article styling */
+.card-style {
+   border:1px solid #E6E6E6;
+}
+
+div.blog-nav {
+   padding:3% 0;
+   padding-left:10%;
+   width:90%;
+   background-color:white;
+   font-family: 'Prosto One', sans-serif;
+   border-right:2px solid #E6E6E6;
+   transition: width ease-in-out 0.2s;
+}
+
+div.blog-nav:hover, div.blog-selected {
+   color: #EEEEEE;
+   border-right:0px;
+   width:95%;
+   background-color:#DD4400; 
+   color:white;
+}
+
+nav.blog-nav {
+   display:inline-block;
+   background-color:white;
+   position:fixed;
+   width:20%;
+   margin: 18px 0px 0 3%;
+}
 
 section.blog-posts {
-   width:70%;
+   width:75%;
+   display:inline-block;
+   float:right;
    margin:0 0 0 auto;
    padding-top:20px;
 }
 
-
 article.blog {
    width:90%;
-   margin:0 auto;
-   font-family:Verdana;
    background-color:white;
-   box-shadow: 3px 3px 7px #888888;
-   border:1px solid #E6E6E6;
+   margin:0 auto;
+   margin-bottom:30px;
+   font-family:sans-serif;
+   box-shadow: 3px 3px 10px #888888;
    padding: 10px 20px 20px 20px;
 }
 
@@ -198,4 +228,3 @@ article.blog > p {
    font-size:14px;
    color:#666666;
 }
-

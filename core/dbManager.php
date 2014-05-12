@@ -127,5 +127,17 @@ class dbManager {
          return new Article($res);
       else return $this->nullArticle;
    }
+
+   public function getSections($num=5) {
+      $query = "SELECT * FROM sections";
+      $query = $this->mysqlO->prepare($query);
+      $query->execute();
+      $res = $query->get_result();
+      $sections = array();
+      for ($i = 0; $i <= $num && $row = $res->fetch_assoc(); $i += 1) {
+         array_push($sections,new Section($row['name']));
+      }
+      return $sections;
+   }
 }
 ?>

@@ -196,7 +196,7 @@ article.blog {
    margin-bottom:30px;
    font-family:sans-serif;
    box-shadow: 3px 3px 10px #888888;
-   padding: 10px 20px 20px 20px;
+   padding: 10px 20px 10px 20px;
 }
 
 article.blog > header {
@@ -212,12 +212,19 @@ article.blog > header > h1 {
 }
 
 
-article.blog .author {
+article.blog .author, article.blog .pubdate {
    color:#BBBBBB;
    padding:0px;
    float:right;
    font-size:13px;
    margin-left:10px;
+}
+
+article.blog .pubdate {
+   float:left;
+   font-size:10px;
+   margin-left:0px;
+   padding-top:10px;
 }
 
 article.blog a:hover {

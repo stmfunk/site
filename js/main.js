@@ -29,4 +29,6 @@ $(document).ready(function() {
      if ($(this).attr('id').indexOf(tab_id) >= 0)  $(this).toggleClass('sliding-select-under-white');
      $(this).toggleClass('sliding-select-under-black');
   });
+
+  $("div.blog-nav").first().addClass("blog-selected");
 });

@@ -18,12 +18,16 @@ class Article {
 
    public function __toString() {
       $string = "";
-      $string .= "<article class=\"blog card-style\" id=\"{$this->id}\">\n";
+      $string .= "<article class=\"group blog card-style\" id=\"{$this->id}\">\n";
       $string .= "   <header>\n";
       $string .= "      <h1><a href=\"/blog?id=$this->id\">{$this->title}</a></h1>\n";
       $string .= "      <span class=\"author\">By <a rel=\"author\" href=\"{$this->author_url}\">{$this->author}</a></span>\n";
       $string .= "   </header>\n";
       $string .= "   <p>{$this->content}</p>\n";
+      $date = split(' ',$this->date)[0];
+      $string .= "   <footer>\n";
+      $string .= "      <span class=\"pubdate\">Published on $date</span>\n";
+      $string .= "   </footer>\n";
       $string .= "</article>\n";
       return $string;
    }

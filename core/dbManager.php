@@ -2,6 +2,7 @@
 class dbManager {
    public $mysqlO;
    public $nullArticle;
+   public $anonymousUser;
    public $dbError;
 
    public function __construct($db) {
@@ -10,7 +11,8 @@ class dbManager {
 
       // Check for and create database if it does
       // not exist.
-      $this->nullArticle = new Article(array("title"=>"None","author"=>"NONE", "author_url"=>"#","id"=>"0","date"=>"NONE","content"=>"NONE"));
+      $this->nullArticle = new Article();
+      $this->anonymousUser = new User();
       $this->mysqlO = new mysqli('localhost','site',$dbPass);
       if ($this->mysqlO->connect_errno) {
          echo $mysqlO->connect_error;
@@ -18,6 +20,19 @@ class dbManager {
       $cmd = "CREATE DATABASE IF NOT EXISTS $db";
       if (!$this->mysqlO->query($cmd)) {
          $dbError = True;
+      }
+
+      if ($this->mysqlO->query("SELECT * FROM users") == false){
+         global $articlesCreate;
+         global $usersCreate;
+         global $sectionsCreate;
+         global $tagsCreate;
+         global $articleTagsCreate;
+         $this->mysqlO->query($usersCreate);
+         $this->mysqlO->query($articlesCreate);
+         $this->mysqlO->query($sectionsCreate);
+         $this->mysqlO->query($tagsCreate);
+         $this->mysqlO->query($articleTagsCreate);
       }
 
       $this->mysqlO->select_db($db);
@@ -29,15 +44,42 @@ class dbManager {
 
    public function userQuery($keyVal=array(),$num=0) {
       if ($this->mysqlO->query("SELECT * FROM users") == false){
-         $this->mysqlO->query("CREATE TABLE users (id MEDIUMINT AUTO_INCREMENT NOT NULL, name VARCHAR(50), username VARCHAR(100) UNIQUE NOT NULL, url VARCHAR(80) DEFAULT \"#\")");
+         $this->mysqlO->query($userCreate);
       }
    }
 
+   public function userById($id) {
+      if ($this->mysqlO->query("SELECT * FROM users") == false){
+         return $this->nullUser;
+      }
+      $query = "SELECT * FROM users WHERE id = ?";
+      $query = $this->mysqlO->prepare($query);
+      $query->bind_param("i",$id);
+      $query->execute();
+      $res = $query->get_result();
+      $res = $res->fetch_assoc();
+      if ($res !== NULL)
+         return new User($res);
+      else return $this->anonymousUser;
+   }
 
-   public function articleQuery($keyVal=array(),$num=0) {
-      
+
+   public function userByUsername($username) {
+      $query = "SELECT * FROM users WHERE username = ?";
+      $query = $this->mysqlO->prepare($query);
+      $query->bind_param("s",$username);
+      $query->execute();
+      $res = $query->get_result();
+      $res = $res->fetch_assoc();
+      if ($res !== NULL) {
+         return new User($res);
+      } else {
+         return $this->anonymousUser;
+      }
+   }
+
+   public function articleQuery($keyVal=array(),$num=5) {
       if ($this->mysqlO->query("SELECT * FROM articles") == false){
-         $this->mysqlO->query($articleCreate);
          return array($this->nullArticle);
       }
 
@@ -46,37 +88,32 @@ class dbManager {
       $queriesToRun = array();
       foreach (array_keys($keyVal) as $key) {
          if ($key == "date") {
-            $range = split('|', $keyVal[$key]);
-            array_push($queriesToRun, "date < '{$range[0]}' AND date >= '{$range[1]}'");
-         } else if ($key == "author") {
-            array_push($queriesToRun,"author = '{$keyVal[$key]}'");
+            list($start,$stop) = split('\|',' '.$keyVal[$key].' ');
+            if ($start != ' ') array_push($queriesToRun, "date <= '$start'");
+            if ($stop != ' ') array_push($queriesToRun, "date >= '$stop'");
          } else if ($key == "title") {
             array_push($queriesToRun,"title = '{$keyVal[$key]}'");
-         } else if ($key == "author_url") {
-            array_push($queriesToRun,"author_url = '{$keyVal[$key]}'");
          }
       }
       if (count($queriesToRun) != 0) {
          $queriesToRun = join(" AND ",$queriesToRun);
          $queriesToRun = "WHERE ".$queriesToRun;
       }
-      $query = "SELECT * FROM articles $queriesToRun";
+      $query = "SELECT * FROM articles $queriesToRun ORDER BY date DESC";
       $result = $this->mysqlO->query($query);
 
       $articles = array();
-      $i = -1;
-      while ($row = $result->fetch_array()) {
-         if ($i == -1) $i = 0;
+      for ($i = 0; $i <= $num && $row = $result->fetch_array(); $i += 1) {
+         $user = $this->userByUsername($row['author']);
+         $row['author'] = $user->name;
+         $row['author_url'] = $user->url;
          array_push($articles,new Article($row));
-         if ($num != 0){
-           $i += 1;
-           if ($i == $num) break;
-        }
       }
-      if ($i == -1) {
-         return array($this->nullArticle);
-      }
-      return $articles;
+      if (count($articles) == 0) {
+         return array($nullArticle);
+      } else {
+        return $articles;
+     }
    }
 
    public function getArticleById($id) {
@@ -87,9 +124,8 @@ class dbManager {
       $res = $query->get_result();
       $res = $res->fetch_assoc();
       if ($res !== NULL)
-         return new Article ($res);
+         return new Article($res);
       else return $this->nullArticle;
-
    }
 }
 ?>

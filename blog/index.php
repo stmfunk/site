@@ -2,8 +2,10 @@
 <html>
    <head>
       <?php 
-         include("../../config.php");
+         include("../dbPass.php");
+         include("../config.php");
          include("../core/Article.php");
+         include("../core/User.php");
          include("../core/dbManager.php");
 
          $db = new dbManager("blog");
@@ -32,9 +34,9 @@
       </nav>
       <?php 
          echo "      <section class=\"blog-posts\">";
-          foreach ($articles as $article) {
-             echo "\n         ".join("\n         ",array_slice(split("\n",$article),0,-1))."\n\n";
-          }
+         foreach ($articles as $article) {
+            echo "\n         ".join("\n         ",array_slice(split("\n",$article),0,-1))."\n\n";
+         }
          echo "      </section>\n";
       ?>
    </body>

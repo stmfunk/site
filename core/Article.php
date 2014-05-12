@@ -7,7 +7,7 @@ class Article {
    public $id;
    public $content;
 
-   public function __construct($vals) {
+   public function __construct($vals=array("title"=>"None","author"=>"NONE", "author_url"=>"#","id"=>"0","date"=>"NONE","content"=>"NONE")) {
       $this->title = $vals['title'];
       $this->author = $vals['author'];
       $this->author_url = $vals['author_url'];

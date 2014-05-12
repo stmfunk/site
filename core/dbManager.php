@@ -22,6 +22,7 @@ class dbManager {
          $dbError = True;
       }
 
+      $this->mysqlO->select_db($db);
       if ($this->mysqlO->query("SELECT * FROM users") == false){
          global $articlesCreate;
          global $usersCreate;
@@ -29,13 +30,12 @@ class dbManager {
          global $tagsCreate;
          global $articleTagsCreate;
          $this->mysqlO->query($usersCreate);
-         $this->mysqlO->query($articlesCreate);
          $this->mysqlO->query($sectionsCreate);
+         $this->mysqlO->query($articlesCreate);
          $this->mysqlO->query($tagsCreate);
          $this->mysqlO->query($articleTagsCreate);
       }
 
-      $this->mysqlO->select_db($db);
    }
 
    public function createDateRange($dateFrom, $dateTo) {
@@ -110,7 +110,7 @@ class dbManager {
          array_push($articles,new Article($row));
       }
       if (count($articles) == 0) {
-         return array($nullArticle);
+         return array($this->nullArticle);
       } else {
         return $articles;
      }

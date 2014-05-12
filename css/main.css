@@ -20,14 +20,14 @@ a {
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 nav.main {
   text-align:center;
   background-color:#DD4400; 
   color: white;
-  padding: 5px 0 0 10%;
+  padding: 0px 0 0 4%;
   position:relative;
 }
 
@@ -41,16 +41,16 @@ nav.main {
 /* This is the code for the slide in animation for the navbar */
 .sliding-select {
   float:left;
-  padding: 0 12px 4px 13px;
+  padding: 5px 12px 4px 1%;
   cursor:pointer;
-  margin:0 2.5% 0 0;
+  margin:0 1.5% 0 0;
   display: inline-block;
   position: relative;
   transition: all ease-out 0.2s;
 } 
 
 .sliding-select-hover {
-  color:#000000;
+  color:#272727;
 }
 .sliding-select:after {
   content: '';
@@ -67,7 +67,7 @@ nav.main {
 
 .sliding-select-under-black:after {
   height: 4px;
-  background:#000000;
+  background-color:#272727;
 }
 
 .sliding-select-under-white:after {

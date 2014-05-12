@@ -1,4 +1,4 @@
-<?
+<?php
 class Article {
    public $title;
    public $author;

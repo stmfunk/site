@@ -4,3 +4,4 @@
    $sectionsCreate = "CREATE TABLE sections (name varchar(100) NOT NULL, UNIQUE KEY name (name))";
    $tagsCreate = "CREATE TABLE tags (id mediumint(9) NOT NULL AUTO_INCREMENT, name varchar(100) DEFAULT NULL, PRIMARY KEY (id), UNIQUE KEY name (name))";
    $articleTagsCreate = "CREATE TABLE article_tags ( article_id mediumint(9) DEFAULT NULL, tag_id mediumint(9) DEFAULT NULL, KEY article_id (article_id), KEY tag_id (tag_id), CONSTRAINT article_tags_ibfk_1 FOREIGN KEY (article_id) REFERENCES articles (id) ON UPDATE CASCADE, CONSTRAINT article_tags_ibfk_2 FOREIGN KEY (tag_id) REFERENCES tags (id) ON UPDATE CASCADE)";
+?>

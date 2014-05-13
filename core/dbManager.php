@@ -113,6 +113,7 @@ class dbManager {
             $bindPol .= "s";
             array_push($queriesToBind, "s",$keyVal[$key]);
          } else if ($key == "section") {
+            if ($keyVal[$key] == "all") continue;
             array_push($queriesToRun,"section = ?");
             $bindPol .= "s";
             array_push($queriesToBind, "s",$keyVal[$key]);

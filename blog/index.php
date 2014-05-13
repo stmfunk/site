@@ -2,11 +2,6 @@
 <html>
    <head>
       <?php 
-         include("../dbPass.php");
-         include ("../core/Section.php");
-         include("../config.php");
-         include("../core/Article.php");
-         include("../core/User.php");
          include("../core/dbManager.php");
 
          $db = new dbManager("blog");

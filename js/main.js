@@ -39,4 +39,7 @@ $(document).ready(function() {
     }});
   });
 
+  var $liF = $("li.blog-nav").first();
+  $liF.addClass("blog-selected");
+  var content = $liF.text().toLowerCase();
 });

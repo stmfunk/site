@@ -86,13 +86,28 @@ class dbManager {
       $this->userQuery();
       // Key value as a date is split using 
       $queriesToRun = array();
+      $queriesToBind = array();
+      $bindPol = "";
       foreach (array_keys($keyVal) as $key) {
          if ($key == "date") {
             list($start,$stop) = split('\|',' '.$keyVal[$key].' ');
-            if ($start != ' ') array_push($queriesToRun, "date <= '$start'");
-            if ($stop != ' ') array_push($queriesToRun, "date >= '$stop'");
+            if ($start != ' ') {
+               array_push($queriesToRun, "date <= ?");
+               $bindPol .= "s";
+               array_push($queriesToBind, $start);
+            } else if ($stop != ' ') {
+               array_push($queriesToRun, "date >= ?");
+               $bindPol .= "s";
+               array_push($queriesToBind, $stop);
+            }
          } else if ($key == "title") {
-            array_push($queriesToRun,"title = '{$keyVal[$key]}'");
+            array_push($queriesToRun,"title = ?");
+            $bindPol .= "s";
+            array_push($queriesToBind, "s",$keyVal[$key]);
+         } else if ($key == "section") {
+            array_push($queriesToRun,"section = ?");
+            $bindPol .= "s";
+            array_push($queriesToBind, "s",$keyVal[$key]);
          }
       }
       if (count($queriesToRun) != 0) {
@@ -100,7 +115,13 @@ class dbManager {
          $queriesToRun = "WHERE ".$queriesToRun;
       }
       $query = "SELECT * FROM articles $queriesToRun ORDER BY date DESC";
-      $result = $this->mysqlO->query($query);
+      $query = $this->mysqlO->prepare($query);
+      foreach ($queriesToBind as $bind) {
+         $query->bind_param($bindPol, $bind);
+      }
+
+      $query->execute();
+      $result = $query->get_result();
 
       $articles = array();
       for ($i = 0; $i <= $num && $row = $result->fetch_array(); $i += 1) {

@@ -15,6 +15,8 @@
             echo "<title>{$article->title}</title>\n";
             $articles = array($article);
 
+         } else if (in_array('section',array_keys($_GET)) !== false) {
+            $articles = $db->articleQuery(array('section'=>$_GET['section']));
          } else {
             $articles = $db->articleQuery();
             echo "<title>Blog</title>\n";

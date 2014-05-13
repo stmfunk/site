@@ -30,5 +30,13 @@ $(document).ready(function() {
      $(this).toggleClass('sliding-select-under-black');
   });
 
-  $("div.blog-nav").first().addClass("blog-selected");
+  $("li.blog-nav").click(function() {
+    $(".blog-selected").removeClass("blog-selected");
+    $(this).addClass("blog-selected");
+    var content = $(this).text().toLowerCase();
+    $.ajax({url:"/core/dbManager.php?section="+content,success:function(result) {
+      $("section.blog-posts").html(result);
+    }});
+  });
+
 });

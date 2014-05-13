@@ -1,4 +1,12 @@
 <?php
+if (count($_GET) !== 0) {
+   include("../core/Article.php");
+   include("../core/User.php");
+   include ("../core/Section.php");
+   include("../dbPass.php");
+   include("../config.php");
+}
+
 class dbManager {
    public $mysqlO;
    public $nullArticle;
@@ -161,4 +169,13 @@ class dbManager {
       return $sections;
    }
 }
+
+if (count($_GET) !== 0) {
+   $db = new dbManager('blog');
+   if ($_GET['section'] !== "") {
+      $articles = $db->articleQuery(array('section'=>$_GET['section']));
+      echo join("\n", $articles);
+   }
+}
+
 ?>

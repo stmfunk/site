@@ -31,7 +31,7 @@
          include("../main-nav.php");
       ?>
       <?php 
-         echo "\n      <nav class=\"blog-nav card-style\">\n";
+         echo "\n      <nav class=\"app-prefs blog-nav card-style\">\n";
          echo "         <ul id=\"blog-nav\">\n";
          $sections = $db->getSections();
          foreach ($sections as $section) {

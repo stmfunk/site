@@ -1,4 +1,4 @@
-/* How about orange and black for menus */
+/* How about orange and black and white for menus */
 @import url(//fonts.googleapis.com/css?family=Prosto+One);
 @import url(//fonts.googleapis.com/css?family=Roboto:100);
 
@@ -25,19 +25,16 @@ h1 {
 
 nav.main {
   text-align:center;
-  background-color:#DD4400; 
-  color: white;
   padding: 0px 0 0 4%;
   position:relative;
 }
+
+
 
 /* This is where we will store global ui settings e.g. app font. */
 li.main {
    list-style:none;
    display:inline;
-}
-.app-prefs {
-  font-family: 'Prosto One', sans-serif;
 }
 
 
@@ -165,17 +162,19 @@ li.blog-nav {
    padding-left:10%;
    width:90%;
    background-color:white;
-   font-family: 'Prosto One', sans-serif;
    border-right:2px solid #E6E6E6;
    transition: width ease-in-out 0.2s;
 }
 
 li.blog-nav:hover, li.blog-selected {
-   color: #EEEEEE;
    border-right:0px;
    width:95%;
-   background-color:#DD4400; 
    color:white;
+}
+
+nav.main, li.blog-nav:hover, li.blog-selected {
+  background-color:#DD4400; 
+  color: white;
 }
 
 nav.blog-nav {
@@ -239,4 +238,8 @@ article.blog a:hover {
 article.blog > p {
    font-size:14px;
    color:#666666;
+}
+
+.app-prefs {
+  font-family: 'Prosto One', sans-serif;
 }

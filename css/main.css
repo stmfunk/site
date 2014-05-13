@@ -32,6 +32,10 @@ nav.main {
 }
 
 /* This is where we will store global ui settings e.g. app font. */
+li.main {
+   list-style:none;
+   display:inline;
+}
 .app-prefs {
   font-family: 'Prosto One', sans-serif;
 }
@@ -155,7 +159,8 @@ img.watson {
    border:1px solid #E6E6E6;
 }
 
-div.blog-nav {
+li.blog-nav {
+   list-style:none;
    padding:3% 0;
    padding-left:10%;
    width:90%;
@@ -165,7 +170,7 @@ div.blog-nav {
    transition: width ease-in-out 0.2s;
 }
 
-div.blog-nav:hover, div.blog-selected {
+li.blog-nav:hover, li.blog-selected {
    color: #EEEEEE;
    border-right:0px;
    width:95%;

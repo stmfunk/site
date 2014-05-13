@@ -31,14 +31,16 @@
          include("../main-nav.php");
       ?>
       <?php 
-         echo "      <nav class=\"blog-nav card-style\">";
+         echo "\n      <nav class=\"blog-nav card-style\">\n";
+         echo "         <ul id=\"blog-nav\">\n";
          $sections = $db->getSections();
          foreach ($sections as $section) {
             $section = ucfirst($section);
-            echo "         <div class=\"blog-nav\">$section</div>";
+            echo "            <li class=\"blog-nav\">$section</div>\n";
          }
-         echo "      </nav>";
-         echo "      <section class=\"blog-posts\">";
+         echo "         </ul>\n";
+         echo "      </nav>\n";
+         echo "      <section class=\"blog-posts\">\n";
          foreach ($articles as $article) {
             echo "\n         ".join("\n         ",array_slice(split("\n",$article),0,-1))."\n\n";
          }

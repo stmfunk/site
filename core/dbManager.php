@@ -153,6 +153,9 @@ class dbManager {
       $query->execute();
       $res = $query->get_result();
       $res = $res->fetch_assoc();
+      $resP = $this->userByUsername($res['author']);
+      $res['author'] = $resP->name;
+      $res['author_url'] = $resP->url;
       if ($res !== NULL)
          return new Article($res);
       else return $this->nullArticle;
@@ -170,13 +173,4 @@ class dbManager {
       return $sections;
    }
 }
-
-if (count($_GET) !== 0) {
-   $db = new dbManager('blog');
-   if ($_GET['section'] !== "") {
-      $articles = $db->articleQuery(array('section'=>$_GET['section']));
-      echo join("\n", $articles);
-   }
-}
-
 ?>

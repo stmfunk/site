@@ -34,7 +34,7 @@ $(document).ready(function() {
     $(".blog-selected").removeClass("blog-selected");
     $(this).addClass("blog-selected");
     var content = $(this).text().toLowerCase();
-    $.ajax({url:"/core/dbManager.php?section="+content,success:function(result) {
+    $.ajax({url:"/core/dbRaw.php?section="+content,success:function(result) {
       $("section.blog-posts").html(result);
     }});
   });

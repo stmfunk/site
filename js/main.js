@@ -1,4 +1,11 @@
 $(document).ready(function() {
+  function getUrlVars() {
+        var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                      vars[key] = value;
+                          });
+                return vars;
+  }
   var tab = $('#'+tab_id);
   tab.addClass('sliding-select-under-white');
   tab.attr("href","javascript:void(0)");
@@ -37,9 +44,30 @@ $(document).ready(function() {
     $.ajax({url:"/core/dbRaw.php?section="+content,success:function(result) {
       $("section.blog-posts").html(result);
     }});
+    history.pushState({},"fish","?section="+content);
   });
 
-  var $liF = $("li.blog-nav").first();
+  var section = getUrlVars()["section"];
+  if (!section) {
+    section = "All";
+  } else {
+    section = section.charAt(0).toUpperCase() + section.slice(1);
+  }
+  var $liF = $("li.blog-nav:contains('"+section+"')");
   $liF.addClass("blog-selected");
   var content = $liF.text().toLowerCase();
+
+
+  // Stuff for sticking the navbar to the top of the page
+  var stickyTop = $(".sticktop").offset().top;
+  $(window).scroll(function() {
+    var windowTop = $(window).scrollTop();
+    if (stickyTop < windowTop+16) {
+      $('.sticktop').css({'position':'fixed','top':'0px'});
+    } else {
+      $('.sticktop').css({'position':'static'});
+    }
+  });
+
+
 });

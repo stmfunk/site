@@ -12,6 +12,7 @@
 
          } else if (in_array('section',array_keys($_GET)) !== false) {
             $articles = $db->articleQuery(array('section'=>$_GET['section']));
+            echo "<title>Blog</title>\n";
          } else {
             $articles = $db->articleQuery();
             echo "<title>Blog</title>\n";
@@ -26,7 +27,7 @@
          include("../main-nav.php");
       ?>
       <?php 
-         echo "\n      <nav class=\"app-prefs blog-nav card-style\">\n";
+         echo "\n      <nav class=\"sticktop app-prefs blog-nav card-style\">\n";
          echo "         <ul id=\"blog-nav\">\n";
          $sections = $db->getSections();
          foreach ($sections as $section) {

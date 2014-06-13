@@ -1,5 +1,5 @@
 <?php
-nclude("../core/Article.php");
+include("../core/Article.php");
 include("../core/User.php");
 include ("../core/Section.php");
 include("../dbPass.php");

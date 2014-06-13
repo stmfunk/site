@@ -180,7 +180,6 @@ nav.main, li.blog-nav:hover, li.blog-selected {
 nav.blog-nav {
    display:inline-block;
    background-color:white;
-   position:fixed;
    width:20%;
    margin: 18px 0px 0 3%;
 }

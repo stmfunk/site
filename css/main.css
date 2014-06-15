@@ -153,8 +153,19 @@ img.watson {
 
 /* Blog article styling */
 .card-style {
+   box-shadow: 3px 3px 10px #888888;
+   background-color:white;
+   box-shadow: 3px 3px 10px #888888;
+   padding: 10px 20px 10px 20px;
    border:1px solid #E6E6E6;
+} .card-style > header > h1 {
+   font-family: 'Roboto',Verdana;
+   display:inline;
+   font-size:29px;
+} .card-style > header > h1:hover {
+  border-bottom: 1px solid;
 }
+
 
 li.blog-nav {
    list-style:none;
@@ -162,7 +173,7 @@ li.blog-nav {
    padding-left:10%;
    width:90%;
    background-color:white;
-   border-right:2px solid #E6E6E6;
+   border-right:1px solid #E6E6E6;
    transition: width ease-in-out 0.2s;
 }
 
@@ -180,6 +191,7 @@ nav.main, li.blog-nav:hover, li.blog-selected {
 nav.blog-nav {
    display:inline-block;
    background-color:white;
+   border:1px solid #E6E6E6;
    width:20%;
    margin: 18px 0px 0 3%;
 }
@@ -194,12 +206,9 @@ section.blog-posts {
 
 article.blog {
    width:90%;
-   background-color:white;
    margin:0 auto;
    margin-bottom:30px;
    font-family:sans-serif;
-   box-shadow: 3px 3px 10px #888888;
-   padding: 10px 20px 10px 20px;
 }
 
 article.blog > header {
@@ -207,9 +216,6 @@ article.blog > header {
 }
 
 article.blog > header > h1 {
-   font-family: 'Roboto',Verdana;
-   display:inline;
-   font-size:29px;
    width:90%;
    margin-bottom:3px;
 }
@@ -231,7 +237,6 @@ article.blog .pubdate {
 }
 
 article.blog a:hover {
-  border-bottom: 1px solid;
 }
 
 article.blog > p {

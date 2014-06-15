@@ -4,20 +4,22 @@
       <?php 
          include("../core/dbManager.php");
 
+         $title = "<title>Blog</title>\n";
          $db = new dbManager("blog");
          if (in_array('id',array_keys($_GET)) !== false) {
             $article = $db->getArticleById($_GET['id']);
-            echo "<title>{$article->title}</title>\n";
+            $title = "<title>{$article->title}</title>\n";
             $articles = array($article);
-
          } else if (in_array('section',array_keys($_GET)) !== false) {
             $articles = $db->articleQuery(array('section'=>$_GET['section']));
-            echo "<title>Blog</title>\n";
+            $title = ucfirst($_GET['section']);
+            $title = "<title>$title</title>\n";
+         } else if (in_array('author',array_keys($_GET)) !== false) {
+            $articles = $db->articleQuery(array('section'=>$_GET['section']));
          } else {
             $articles = $db->articleQuery();
-            echo "<title>Blog</title>\n";
          }
-
+         echo $title;
          include("../includes.php"); 
       ?>
       <script>var tab_id="blog-tab";</script>
@@ -27,7 +29,7 @@
          include("../main-nav.php");
       ?>
       <?php 
-         echo "\n      <nav class=\"sticktop app-prefs blog-nav card-style\">\n";
+         echo "\n      <nav class=\"sticktop app-prefs blog-nav\">\n";
          echo "         <ul id=\"blog-nav\">\n";
          $sections = $db->getSections();
          foreach ($sections as $section) {

@@ -20,7 +20,7 @@ class Article {
       $string = "";
       $string .= "<article class=\"group blog card-style\" id=\"{$this->id}\">\n";
       $string .= "   <header>\n";
-      $string .= "      <h1><a href=\"/blog?id=$this->id\">{$this->title}</a></h1>\n";
+      $string .= "      <h1><a href=\"javascript:void(0)\" class=\"postTitle\" data-id=\"$this->id\">{$this->title}</a></h1>\n";
       $string .= "      <span class=\"author\">By <a rel=\"author\" href=\"{$this->author_url}\">{$this->author}</a></span>\n";
       $string .= "   </header>\n";
       $string .= "   <p>{$this->content}</p>\n";

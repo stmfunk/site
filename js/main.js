@@ -73,13 +73,16 @@ $(document).ready(function() {
 
 
   // Stuff for sticking the navbar to the top of the page
-  var stickyTop = $(".sticktop").offset().top;
-  $(window).scroll(function() {
-    var windowTop = $(window).scrollTop();
-    if (stickyTop < windowTop+17) {
-      $('.sticktop').css({'position':'fixed','top':'0px'});
-    } else {
-      $('.sticktop').css({'position':'static'});
-    }
-  });
+  try {
+    var stickyTop = $(".sticktop").offset().top;
+    $(window).scroll(function() {
+      var windowTop = $(window).scrollTop();
+      if (stickyTop < windowTop+17) {
+        $('.sticktop').css({'position':'fixed','top':'0px'});
+      } else {
+        $('.sticktop').css({'position':'static'});
+      }
+    });
+  } catch (err) {
+  }
 });

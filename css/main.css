@@ -158,12 +158,16 @@ img.watson {
    box-shadow: 3px 3px 10px #888888;
    padding: 10px 20px 10px 20px;
    border:1px solid #E6E6E6;
-} .card-style > header > h1 {
+} .card-style > header > h2 {
    font-family: 'Roboto',Verdana;
    display:inline;
    font-size:29px;
-} .card-style > header > h1:hover {
+} .card-style > header > h2:hover {
   border-bottom: 1px solid;
+} .card-style p {
+   font-size:14px;
+   color:#666666;
+   font-family:sans-serif;
 }
 
 
@@ -204,18 +208,48 @@ section.blog-posts {
    padding-top:20px;
 }
 
+article.profile-condense {
+   width:300px;
+   padding:0;
+   float:left;
+   border:0;
+   margin:20px;
+}
+
+article.profile-condense h2 {
+   font-size:25px;
+}
+
+.profile-condense header img {
+   height:60px;
+   width:60px;
+   position:relative;
+   margin-top:0;
+   padding:0;
+   margin:0;
+   margin-right:15px;
+}
+
+.profile-condense p {
+   margin:4px;
+   padding:0 20px 10px 20px;
+}
+
+.profile-condense header {
+   padding-bottom:5px;
+}
+
 article.blog {
    width:90%;
    margin:0 auto;
    margin-bottom:30px;
-   font-family:sans-serif;
 }
 
 article.blog > header {
    margin-bottom:10px;
 }
 
-article.blog > header > h1 {
+article.blog > header > h2 {
    width:90%;
    margin-bottom:3px;
 }
@@ -240,10 +274,21 @@ article.blog a:hover {
 }
 
 article.blog > p {
-   font-size:14px;
-   color:#666666;
 }
 
 .app-prefs {
   font-family: 'Prosto One', sans-serif;
+}
+
+/* Search box styling */
+.large-search {
+   width:70%;
+   height:30px;
+   margin:75px auto 80px auto;
+}
+
+section.search {
+   background-color: #CCCCCC; /* A nice light grey */
+   margin:0;
+   height:100%;
 }

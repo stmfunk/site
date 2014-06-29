@@ -214,6 +214,7 @@ article.profile-condense {
    float:left;
    border:0;
    margin:20px;
+   margin-top:10px;
 }
 
 article.profile-condense h2 {
@@ -285,10 +286,22 @@ article.blog > p {
    width:70%;
    height:30px;
    margin:75px auto 80px auto;
+   background-image:url('/img/search.png');
+   background-size:40px auto;
+   background-repeat:no-repeat;
+   background-position:98% center;
 }
 
 section.search {
    background-color: #CCCCCC; /* A nice light grey */
    margin:0;
    height:100%;
+}
+
+/* Featured Box */
+section.featured {
+   padding-left:20px;
+   padding-top:8px;
+} section.featured > h2 {
+   font-family:"Roboto";
 }

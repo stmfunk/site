@@ -259,9 +259,17 @@ article.blog > header > h2 {
 article.blog .author, article.blog .pubdate {
    color:#BBBBBB;
    padding:0px;
+   font-family: sans-serif;
    float:right;
    font-size:13px;
    margin-left:10px;
+}
+
+.author a[rel=author] {
+  color:#BBBBBB;
+  -webkit-transition:all ease-in-out 0.2s;
+} .author a[rel=author]:hover {
+  color:#999999;
 }
 
 article.blog .pubdate {

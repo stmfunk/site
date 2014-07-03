@@ -4,7 +4,9 @@
       <title>People</title>
       <?php 
          include("../includes.php"); 
+         include("../core/dbManager.php");
          include("../core/Profile.php");
+         $dbMan = new dbManager('blog');
       ?>
       <script>var tab_id="people-tab";</script>
    </head>
@@ -14,16 +16,15 @@
          include("../main-nav.php"); 
       ?>
       <section class="search group">
-        <div class="large-search card-style">
-
+        <div contenteditable="true" class="large-search card-style">
         </div>
+        <div class="shadow-bottom"></div>
       </section>
       <section class="featured">
         <h2>Featured</h2>
         <?php
-           $me = new Person(array('name'=>"Donal O'Shea", 'url'=>"http://menishi.com",'username'=>"stmfunk"));
-           $myProfileC = new Profile(array('person'=>$me,'about'=>'Lorem ipsum dolor sit amet, eam at luptatum posidonium, in duo dicit animal, quaestio partiendo reprimique ex mei. Ne inani vivendo his, semper tritani laboramus nam at? Et mei solet copiosae, inani tempor eligendi ne est? Malis tacimates eam at, ut clita prompta hendrerit nec. An has adolescens vituperata intellegebat, te qui torquatos conclusionemque...', 'links'=>'asdf','imgID'=>'Batman','onlineStatus'=>'online'));
-           echo $myProfileC->condensedString();
+           $me = $dbMan->profileByUsername('stm');
+           echo $me->condensedString();
         ?> 
       </section>
    </body>

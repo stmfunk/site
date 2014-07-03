@@ -85,4 +85,16 @@ $(document).ready(function() {
     });
   } catch (err) {
   }
+
+
+  // This is all site search stuff
+  var $searchBar = $(".large-search");
+  var h = $searchBar.parent().height();
+  $searchBar.keypress(function(e){
+     $(this).parent().animate({"height":h*2.5+"px"});
+     return e.which != 13;
+  });
+  $searchBar.focusout(function() {
+     $(this).parent().animate({"height":h+"px"});
+  });
 });

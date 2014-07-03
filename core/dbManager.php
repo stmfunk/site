@@ -7,9 +7,8 @@ include("../config.php");
 
 class dbManager {
    public $mysqlO;
-   public $nullArticle;
-   public $anonymousUser;
    public $dbError;
+   public $create;
 
    public function __construct($db) {
       global $dbPass;
@@ -17,8 +16,8 @@ class dbManager {
 
       // Check for and create database if it does
       // not exist.
-      $this->nullArticle = new Article();
-      $this->anonymousUser = new User();
+      global $create;
+      $this->create = $create;
       $this->mysqlO = new mysqli('localhost','site',$dbPass);
       if ($this->mysqlO->connect_errno) {
          echo $mysqlO->connect_error;
@@ -29,34 +28,29 @@ class dbManager {
       }
 
       $this->mysqlO->select_db($db);
-      if ($this->mysqlO->query("SELECT * FROM users") == false){
-         global $articlesCreate;
-         global $usersCreate;
-         global $sectionsCreate;
-         global $tagsCreate;
-         global $articleTagsCreate;
-         $this->mysqlO->query($usersCreate);
-         $this->mysqlO->query($sectionsCreate);
-         $this->mysqlO->query($articlesCreate);
-         $this->mysqlO->query($tagsCreate);
-         $this->mysqlO->query($articleTagsCreate);
+      foreach ($create as $name => $q) {
+         if ($this->mysqlO->query("SELECT * FROM $name") == false) {
+            $this->mysqlO->query($q);
+         }
       }
-
    }
 
    public function createDateRange($dateFrom, $dateTo) {
       return $dateFrom."|".$dateTo;
    }
 
+
+   // Queries related to users
    public function userQuery($keyVal=array(),$num=0) {
       if ($this->mysqlO->query("SELECT * FROM users") == false){
-         $this->mysqlO->query($userCreate);
+         $this->mysqlO->query($create('users'));
+         return;
       }
    }
 
    public function userById($id) {
       if ($this->mysqlO->query("SELECT * FROM users") == false){
-         return $this->nullUser;
+         return new User();
       }
       $query = "SELECT * FROM users WHERE id = ?";
       $query = $this->mysqlO->prepare($query);
@@ -66,7 +60,7 @@ class dbManager {
       $res = $res->fetch_assoc();
       if ($res !== NULL)
          return new User($res);
-      else return $this->anonymousUser;
+      else return new User();
    }
 
 
@@ -80,13 +74,48 @@ class dbManager {
       if ($res !== NULL) {
          return new User($res);
       } else {
-         return $this->anonymousUser;
+         return new User();
       }
    }
 
+   // Profile Queries
+   public function profileByUsername($username) {
+      if ($this->mysqlO->query("SELECT * FROM profiles") == false) {
+         $this->mysqlO->query($create('profiles'));
+         return;
+      }
+      $query = "SELECT * FROM profiles WHERE username = ?";
+      $query = $this->mysqlO->prepare($query);
+      $query->bind_param("s",$username);
+      $query->execute();
+      $res = $query->get_result();
+      $res = $res->fetch_assoc(); 
+      $res['avatar'] = $res['avatar'].'.'.$this->imageDataById($res['avatar'])['type'];
+      $user = $this->userByUsername($res['username']);
+      $res['person'] = $user;
+      return new Profile($res);
+   }
+
+   // Image query
+  public function imageDataById($id) {
+     if ($this->mysqlO->query("SELECT * FROM images") == false) {
+        $this->mysqlO->query($create('images'));
+        return;
+      }
+      $query = "SELECT * FROM images WHERE id = ?";
+      $query = $this->mysqlO->prepare($query);
+      $query->bind_param("i",$id);
+      $query->execute();
+      $res = $query->get_result();
+      $res = $res->fetch_assoc();
+      return $res;
+   }
+    
+
+   // These are queries relating to articles
    public function articleQuery($keyVal=array(),$num=5) {
       if ($this->mysqlO->query("SELECT * FROM articles") == false){
-         return array($this->nullArticle);
+         return array(new Article());
       }
 
       $this->userQuery();
@@ -138,7 +167,7 @@ class dbManager {
          array_push($articles,new Article($row));
       }
       if (count($articles) == 0) {
-         return array($this->nullArticle);
+         return array(new Article());
       } else {
         return $articles;
      }
@@ -156,7 +185,7 @@ class dbManager {
       $res['author_url'] = $resP->url;
       if ($res !== NULL)
          return new Article($res);
-      else return $this->nullArticle;
+      else return new Article();
    }
 
    public function getSections($num=5) {

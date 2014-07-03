@@ -37,8 +37,6 @@ li.main {
    display:inline;
 }
 
-
-
 /* This is the code for the slide in animation for the navbar */
 .sliding-select {
   float:left;
@@ -187,7 +185,7 @@ li.blog-nav:hover, li.blog-selected {
    color:white;
 }
 
-nav.main, li.blog-nav:hover, li.blog-selected {
+nav.main, li.blog-nav:hover, li.blog-selected,article.profile-condense > header {
   background-color:#DD4400; 
   color: white;
 }
@@ -222,22 +220,22 @@ article.profile-condense h2 {
 }
 
 .profile-condense header img {
-   height:60px;
+   height:65px;
    width:60px;
    position:relative;
    margin-top:0;
    padding:0;
    margin:0;
-   margin-right:15px;
+   margin-right:20px;
 }
 
 .profile-condense p {
    margin:4px;
-   padding:0 20px 10px 20px;
+   padding:5px 20px 10px 20px;
 }
 
 .profile-condense header {
-   padding-bottom:5px;
+   padding-bottom:7px;
 }
 
 article.blog {
@@ -293,16 +291,21 @@ article.blog > p {
 .large-search {
    width:70%;
    height:30px;
+   font-family:sans-serif;
    margin:75px auto 80px auto;
    background-image:url('/img/search.png');
    background-size:40px auto;
    background-repeat:no-repeat;
    background-position:98% center;
+   overflow:hidden;
+   white-space:nowrap;
 }
 
 section.search {
    background-color: #CCCCCC; /* A nice light grey */
+   box-shadow:inset 0px -9px 10px -9px rgba(0,0,0,0.5);
    margin:0;
+   font-size:25px;
    height:100%;
 }
 

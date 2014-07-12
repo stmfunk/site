@@ -40,7 +40,7 @@
          echo "      </nav>\n";
          echo "      <section class=\"blog-posts\">\n";
          foreach ($articles as $article) {
-            echo "\n         ".join("\n         ",array_slice(split("\n",$article),0,-1))."\n\n";
+            echo "\n         ".join("\n         ",array_slice(explode("\n",$article),0,-1))."\n\n";
          }
          echo "      </section>\n";
       ?>

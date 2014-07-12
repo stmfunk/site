@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>People</title>
+      <title>Explore</title>
       <?php 
          include("../includes.php"); 
          include("../core/dbManager.php");
-         include("../core/Profile.php");
          $dbMan = new dbManager('blog');
       ?>
-      <script>var tab_id="people-tab";</script>
+      <script>var tab_id="explore-tab";</script>
    </head>
    <body>
 
@@ -17,6 +16,7 @@
       ?>
       <section class="search group">
         <div contenteditable="true" class="large-search card-style">
+           Search for People, Projects or Code
         </div>
         <div class="shadow-bottom"></div>
       </section>

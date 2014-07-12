@@ -1,0 +1,2 @@
+#!/bin/sh
+PHP_FCGI_CHILDREN=1 PHPRC=/usr/local/etc/php/5.5 exec /usr/local/sbin/php-fpm

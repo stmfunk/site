@@ -304,6 +304,7 @@ article.blog > p {
 section.search {
    background-color: #CCCCCC; /* A nice light grey */
    box-shadow:inset 0px -9px 10px -9px rgba(0,0,0,0.5);
+   overflow:hidden;
    margin:0;
    font-size:25px;
    height:100%;

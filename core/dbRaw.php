@@ -10,4 +10,8 @@
          $article = $db->getArticleById($_GET['id']);
          echo $article;
       }
+      else if (in_array("profile_username", array_keys($_GET))) {
+         $profile = $db->profileByUsername($_GET['profile_username']);
+         echo $profile->condensedString();
+      }
    }

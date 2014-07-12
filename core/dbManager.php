@@ -2,6 +2,7 @@
 include("../core/Article.php");
 include("../core/User.php");
 include ("../core/Section.php");
+include("../core/Profile.php");
 include("../dbPass.php");
 include("../config.php");
 
@@ -12,7 +13,6 @@ class dbManager {
 
    public function __construct($db) {
       global $dbPass;
-      $this->id = $id;
 
       // Check for and create database if it does
       // not exist.

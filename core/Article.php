@@ -24,7 +24,7 @@ class Article {
       $string .= "      <span class=\"author\">By <a rel=\"author\" href=\"{$this->author_url}\">{$this->author}</a></span>\n";
       $string .= "   </header>\n";
       $string .= "   <p>{$this->content}</p>\n";
-      $date = split(' ',$this->date)[0];
+      $date = explode(' ',$this->date)[0];
       $string .= "   <footer>\n";
       $string .= "      <span class=\"pubdate\">Published on $date</span>\n";
       $string .= "   </footer>\n";

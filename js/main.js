@@ -91,10 +91,18 @@ $(document).ready(function() {
   var $searchBar = $(".large-search");
   var h = $searchBar.parent().height();
   $searchBar.keypress(function(e){
-     $(this).parent().animate({"height":h*2.5+"px"});
+     var parent = $(this).parent();
+     parent.animate({"height":h*2.15+"px"});
+     $(this).css({"margin-bottom":"20px"});
+     $.ajax({url:"/core/dbRaw.php?profile_username=stm",success:function(result) {
+       if (parent.children().length < 6) parent.append(result);
+     }});
      return e.which != 13;
   });
   $searchBar.focusout(function() {
-     $(this).parent().animate({"height":h+"px"});
+     $(this).css({"margin-bottom":"80px"});
+     var parent = $(this).parent();
+     parent.animate({"height":h+"px"});
+     parent.children(".profile-condense").remove();
   });
 });

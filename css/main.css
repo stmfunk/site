@@ -317,3 +317,6 @@ section.featured {
 } section.featured > h2 {
    font-family:"Roboto";
 }
+span.search-text {
+   color: #aaaaaa;
+}

@@ -5,9 +5,6 @@
                <a href="/"><span id="home" class="sliding-select"><h1>Home</h1></span></a>
             </li>
             <li class="main">
-               <a href="/explore"><span id="explore-tab" class="sliding-select"><h1>Explore</h2></span></a>
-            </li>
-            <li class="main">
                <a href="#"><span id="projects-tab" class="sliding-select"><h1>Projects</h2></span></a>
             </li>
             <li class="main">

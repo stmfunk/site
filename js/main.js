@@ -90,6 +90,7 @@ $(document).ready(function() {
   // This is all site search stuff
   var $searchBar = $(".large-search");
   var h = $searchBar.parent().height();
+  var searchText =    $searchBar.find("span.search-text");
   $searchBar.keypress(function(e){
      var parent = $(this).parent();
      parent.animate({"height":h*2.15+"px"});
@@ -99,10 +100,17 @@ $(document).ready(function() {
      }});
      return e.which != 13;
   });
+  $searchBar.focus(function() {
+     searchText.remove();
+  });
+
   $searchBar.focusout(function() {
      $(this).css({"margin-bottom":"80px"});
      var parent = $(this).parent();
      parent.animate({"height":h+"px"});
      parent.children(".profile-condense").remove();
+     if ($(this).empty()) {
+        $(this).append(searchText);
+     }
   });
 });

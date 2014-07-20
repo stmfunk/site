@@ -1,10 +1,10 @@
 <?php
-include("../core/Article.php");
-include("../core/User.php");
-include ("../core/Section.php");
-include("../core/Profile.php");
-include("../dbPass.php");
-include("../config.php");
+include("Article.php");
+include("User.php");
+include ("Section.php");
+include("Profile.php");
+include("dbPass.php");
+include("config.php");
 
 class dbManager {
    public $mysqlO;

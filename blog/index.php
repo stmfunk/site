@@ -11,13 +11,13 @@
             $title = "<title>{$article->title}</title>\n";
             $articles = array($article);
          } else if (in_array('section',array_keys($_GET)) !== false) {
-            $articles = $db->articleQuery(array('section'=>$_GET['section']));
+            $articles = $db->articleQuery(array('type'=>'blog','section'=>$_GET['section']));
             $title = ucfirst($_GET['section']);
             $title = "<title>$title</title>\n";
          } else if (in_array('author',array_keys($_GET)) !== false) {
-            $articles = $db->articleQuery(array('section'=>$_GET['section']));
+            $articles = $db->articleQuery(array('type'=>'blog','section'=>$_GET['section']));
          } else {
-            $articles = $db->articleQuery();
+            $articles = $db->articleQuery(array('type'=>'blog'));
          }
          echo $title;
          include("../includes.php"); 
@@ -27,18 +27,10 @@
    <body>
       <?php 
          include("../main-nav.php");
-      ?>
-      <?php 
-         echo "\n      <nav class=\"sticktop app-prefs blog-nav\">\n";
-         echo "         <ul id=\"blog-nav\">\n";
-         $sections = $db->getSections();
-         foreach ($sections as $section) {
-            $section = ucfirst($section);
-            echo "            <li class=\"blog-nav\">$section</div>\n";
-         }
-         echo "         </ul>\n";
-         echo "      </nav>\n";
-         echo "      <section class=\"blog-posts\">\n";
+         include("../sideNav.php");
+         $sdNv = new sideNav(array('blog'),$db);
+         echo $sdNv;
+
          foreach ($articles as $article) {
             echo "\n         ".join("\n         ",array_slice(explode("\n",$article),0,-1))."\n\n";
          }

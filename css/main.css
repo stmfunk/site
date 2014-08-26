@@ -286,37 +286,3 @@ article.blog > p {
 .app-prefs {
   font-family: 'Prosto One', sans-serif;
 }
-
-/* Search box styling */
-.large-search {
-   width:70%;
-   height:30px;
-   font-family:sans-serif;
-   margin:75px auto 80px auto;
-   background-image:url('/img/search.png');
-   background-size:40px auto;
-   background-repeat:no-repeat;
-   background-position:98% center;
-   overflow:hidden;
-   white-space:nowrap;
-}
-
-section.search {
-   background-color: #CCCCCC; /* A nice light grey */
-   box-shadow:inset 0px -9px 10px -9px rgba(0,0,0,0.5);
-   overflow:hidden;
-   margin:0;
-   font-size:25px;
-   height:100%;
-}
-
-/* Featured Box */
-section.featured {
-   padding-left:20px;
-   padding-top:8px;
-} section.featured > h2 {
-   font-family:"Roboto";
-}
-span.search-text {
-   color: #aaaaaa;
-}

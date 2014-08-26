@@ -144,6 +144,10 @@ class dbManager {
             array_push($queriesToRun,"section = ?");
             $bindPol .= "s";
             array_push($queriesToBind, "s",$keyVal[$key]);
+         } else if ($key == "type") {
+            array_push($queriesToRun, "type = ?");
+            $bindPol .= "s";
+            array_push($queriesToBind, "s",$keyVal[$key]);
          }
       }
       if (count($queriesToRun) != 0) {
@@ -188,8 +192,16 @@ class dbManager {
       else return new Article();
    }
 
-   public function getSections($num=5) {
+   public function getSections($types=array(), $num=5) {
       $query = "SELECT * FROM sections";
+      if (count($types) != 0) {
+        $query .= " WHERE ";
+        $typeParams = array();
+        foreach ($types as $type) {
+           array_push($typeParams,"type = '$type'");
+        }
+        $query .= implode(" OR ", $typeParams);
+      }
       $query = $this->mysqlO->prepare($query);
       $query->execute();
       $res = $query->get_result();

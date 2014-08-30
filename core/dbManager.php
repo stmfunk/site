@@ -5,6 +5,13 @@ include ("Section.php");
 include("Profile.php");
 include("dbPass.php");
 include("config.php");
+function makeValuesReferenced($arr){
+       $refs = array();
+           foreach($arr as $key => $value)
+                   $refs[$key] = &$arr[$key];
+                       return $refs;
+
+                               }
 
 class dbManager {
    public $mysqlO;
@@ -143,11 +150,11 @@ class dbManager {
             if ($keyVal[$key] == "all") continue;
             array_push($queriesToRun,"section = ?");
             $bindPol .= "s";
-            array_push($queriesToBind, "s",$keyVal[$key]);
+            array_push($queriesToBind, $keyVal[$key]);
          } else if ($key == "type") {
             array_push($queriesToRun, "type = ?");
             $bindPol .= "s";
-            array_push($queriesToBind, "s",$keyVal[$key]);
+            array_push($queriesToBind, $keyVal[$key]);
          }
       }
       if (count($queriesToRun) != 0) {
@@ -156,9 +163,8 @@ class dbManager {
       }
       $query = "SELECT * FROM articles $queriesToRun ORDER BY date DESC";
       $query = $this->mysqlO->prepare($query);
-      foreach ($queriesToBind as $bind) {
-         $query->bind_param($bindPol, $bind);
-      }
+      array_unshift($queriesToBind,$bindPol);
+      call_user_func_array(array($query,"bind_param"),makeValuesReferenced($queriesToBind));
 
       $query->execute();
       $result = $query->get_result();

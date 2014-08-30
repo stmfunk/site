@@ -6,6 +6,16 @@ $(document).ready(function() {
                           });
                 return vars;
   }
+  
+  var setSection = function(section) { 
+    section = section.charAt(0).toUpperCase() + section.slice(1);
+    console.log('fish');
+    var $liF = $("li.blog-nav:contains('"+section+"')");
+    $(".blog-selected").removeClass("blog-selected");
+    $liF.addClass("blog-selected");
+    var content = $liF.text().toLowerCase();
+  }
+  
   var tab = $('#'+tab_id);
   tab.addClass('sliding-select-under-white');
   tab.attr("href","javascript:void(0)");
@@ -50,9 +60,11 @@ $(document).ready(function() {
   });
 
   $(document).on('click',"a.postTitle",function() {
-    $(".blog-selected").removeClass("blog-selected");
-    $("li.blog-nav").first().addClass("blog-selected");
     var id = $(this).data('id');
+    var thisSection = $(this).data('section');
+
+    setSection(thisSection)
+
     $.ajax({url:"/core/dbRaw.php?id="+id,success:function(result) {
       $("section.blog-posts").html(result);
     }});
@@ -63,13 +75,11 @@ $(document).ready(function() {
 
   var section = getUrlVars()["section"];
   if (!section) {
-    section = "All";
+     if ($(".blog-selected").length == 0)
+        setSection("all");
   } else {
-    section = section.charAt(0).toUpperCase() + section.slice(1);
+     setSection(section);
   }
-  var $liF = $("li.blog-nav:contains('"+section+"')");
-  $liF.addClass("blog-selected");
-  var content = $liF.text().toLowerCase();
 
 
   // Stuff for sticking the navbar to the top of the page

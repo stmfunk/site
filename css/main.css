@@ -170,6 +170,7 @@ img.watson {
 
 
 li.blog-nav {
+   cursor:pointer;
    list-style:none;
    padding:3% 0;
    padding-left:10%;

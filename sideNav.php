@@ -17,7 +17,6 @@
          }
          $str .= "         </ul>\n";
          $str .= "      </nav>\n";
-         $str .= "      <section class=\"blog-posts\">\n";
          return $str;
       }
    }

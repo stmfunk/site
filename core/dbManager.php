@@ -120,12 +120,11 @@ class dbManager {
     
 
    // These are queries relating to articles
-   public function articleQuery($keyVal=array(),$num=5) {
+   public function articleQuery($keyVal=array(),$num=5,$startPoint=0) {
       if ($this->mysqlO->query("SELECT * FROM articles") == false){
          return array(new Article());
       }
 
-      $this->userQuery();
       // Key value as a date is split using 
       $queriesToRun = array();
       $queriesToBind = array();
@@ -164,17 +163,21 @@ class dbManager {
       $query = "SELECT * FROM articles $queriesToRun ORDER BY date DESC";
       $query = $this->mysqlO->prepare($query);
       array_unshift($queriesToBind,$bindPol);
-      call_user_func_array(array($query,"bind_param"),makeValuesReferenced($queriesToBind));
+      if (count($queriesToBind) == 2) 
+         call_user_func_array(array($query,"bind_param"),makeValuesReferenced($queriesToBind));
+      
 
       $query->execute();
       $result = $query->get_result();
 
       $articles = array();
-      for ($i = 0; $i <= $num && $row = $result->fetch_array(); $i += 1) {
-         $user = $this->userByUsername($row['author']);
-         $row['author'] = $user->name;
-         $row['author_url'] = $user->url;
-         array_push($articles,new Article($row));
+      for ($i = 0; $i < $num+$startPoint && $row = $result->fetch_array(); $i += 1) {
+         if ($i >= $startPoint) {
+            $user = $this->userByUsername($row['author']);
+            $row['author'] = $user->name;
+            $row['author_url'] = $user->url;
+            array_push($articles,new Article($row));
+         }
       }
       if (count($articles) == 0) {
          return array(new Article());

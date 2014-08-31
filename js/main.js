@@ -9,7 +9,6 @@ $(document).ready(function() {
   
   var setSection = function(section) { 
     section = section.charAt(0).toUpperCase() + section.slice(1);
-    console.log('fish');
     var $liF = $("li.blog-nav:contains('"+section+"')");
     $(".blog-selected").removeClass("blog-selected");
     $liF.addClass("blog-selected");
@@ -52,10 +51,10 @@ $(document).ready(function() {
     $(".blog-selected").removeClass("blog-selected");
     $(this).addClass("blog-selected");
     var content = $(this).text();
-    $.ajax({url:"/core/dbRaw.php?section="+content,success:function(result) {
+    $.ajax({url:"/core/dbRaw.php?section="+content.toLowerCase(),success:function(result) {
       $("section.blog-posts").html(result);
     }});
-    history.pushState({},"fish","?section="+content.toLowerCase());
+    history.pushState({},"Section Push","?section="+content.toLowerCase());
     $(document).attr("title",content);
   });
 
@@ -68,7 +67,7 @@ $(document).ready(function() {
     $.ajax({url:"/core/dbRaw.php?id="+id,success:function(result) {
       $("section.blog-posts").html(result);
     }});
-    history.pushState({},"fish","?id="+id);
+    history.pushState({},"ID Push","?id="+id);
     $(document).attr("title",$(this).text());
   });
     

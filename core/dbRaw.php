@@ -3,10 +3,11 @@
    if (count($_GET) !== 0) {
       $db = new dbManager('blog');
       if (in_array("section",array_keys($_GET))) {
-         if ($_GET['section'] == 'all') {
+         $section = strtolower($_GET['section']);
+         if ($section == 'all') {
             $articles = $db->articleQuery();
          } else {
-            $articles = $db->articleQuery(array('section'=>$_GET['section']));
+            $articles = $db->articleQuery(array('section'=>$section));
          }
          echo join("\n", $articles);
       }

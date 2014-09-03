@@ -51,7 +51,7 @@ $(document).ready(function() {
     $(".blog-selected").removeClass("blog-selected");
     $(this).addClass("blog-selected");
     var content = $(this).text();
-    $.ajax({url:"/core/dbRaw.php?section="+content.toLowerCase(),success:function(result) {
+    $.ajax({url:"/core/Feed.php?type=blog&section="+content.toLowerCase(),success:function(result) {
       $("section.blog-posts").html(result);
     }});
     history.pushState({},"Section Push","?section="+content.toLowerCase());
@@ -64,13 +64,30 @@ $(document).ready(function() {
 
     setSection(thisSection)
 
-    $.ajax({url:"/core/dbRaw.php?id="+id,success:function(result) {
+    $.ajax({url:"/core/feed.php?id="+id,success:function(result) {
       $("section.blog-posts").html(result);
     }});
     history.pushState({},"ID Push","?id="+id);
     $(document).attr("title",$(this).text());
   });
-    
+
+
+  // This is the stuff for bottom of page autoloading
+  var pageAutoLoad = {
+     alreadyLoading:false,
+  }
+  $(window).scroll(function() {
+       if ($(document).height() <= ($(window).height() + $(window).scrollTop())) {
+          if (pageAutoLoad.alreadyLoading == false && !$('.blog-posts').children('.terminus').length) {
+            pageAutoLoad.alreadyLoading = true;
+            var nextPage = $('.blog-posts').children().last().data("number")+1;
+            $.ajax({url:"/core/feed.php?type=blog&startpage="+nextPage,success:function(result) {
+               $("section.blog-posts").append(result);
+               pageAutoLoad.alreadyLoading = false;
+            }});
+        }
+     }
+  });
 
   var section = getUrlVars()["section"];
   if (!section) {
@@ -95,9 +112,9 @@ $(document).ready(function() {
   } catch (err) {
   }
 
-
   // This is all site search stuff
-  var $searchBar = $(".large-search");
+  // Temporarily redundent
+/*  var $searchBar = $(".large-search");
   var h = $searchBar.parent().height();
   var searchText =    $searchBar.find("span.search-text");
   $searchBar.keypress(function(e){
@@ -121,5 +138,5 @@ $(document).ready(function() {
      if ($(this).empty()) {
         $(this).append(searchText);
      }
-  });
+  });*/
 });

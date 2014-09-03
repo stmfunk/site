@@ -2,8 +2,9 @@
 <html>
    <head>
       <?php 
-         include("../core/dbManager.php");
-         include("../core/Feed.php");
+         include_once("../core/dbManager.php");
+         include_once("../core/feed.php");
+         include_once("../sideNav.php");
 
          $title = "<title>Blog</title>\n";
          $db = new dbManager("blog");
@@ -16,15 +17,6 @@
             $_GET['type'] = 'blog';
             $page = new Feed($db,$_GET);
          }
-            /* if (in_array('section',array_keys($_GET)) !== false) {
-            $articles = $db->articleQuery(array('type'=>'blog','section'=>$_GET['section']));
-            $title = ucfirst($_GET['section']);
-            $title = "<title>$title</title>\n";
-         } else if (in_array('author',array_keys($_GET)) !== false) {
-            $articles = $db->articleQuery(array('type'=>'blog','section'=>$_GET['section']));
-         } else {
-            $articles = $db->articleQuery(array('type'=>'blog'));
-         }*/
          echo $title;
          include("../includes.php"); 
 
@@ -34,7 +26,6 @@
    <body>
       <?php 
          include("../main-nav.php");
-         include("../sideNav.php");
          $sdNv = new sideNav(array('blog'),$db);
          echo $sdNv;
 

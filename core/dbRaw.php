@@ -1,5 +1,6 @@
 <?php
    include("dbManager.php");
+   include("feed.php");
    if (count($_GET) !== 0) {
       $db = new dbManager('blog');
       if (in_array("section",array_keys($_GET))) {

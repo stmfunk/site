@@ -1,17 +1,17 @@
 <?php
-include("Article.php");
-include("User.php");
-include ("Section.php");
-include("Profile.php");
-include("dbPass.php");
-include("config.php");
+include_once("Article.php");
+include_once("User.php");
+include_once("Section.php");
+include_once("Profile.php");
+include_once("dbPass.php");
+include_once("config.php");
+
 function makeValuesReferenced($arr){
        $refs = array();
            foreach($arr as $key => $value)
                    $refs[$key] = &$arr[$key];
                        return $refs;
-
-                               }
+}
 
 class dbManager {
    public $mysqlO;
@@ -154,6 +154,8 @@ class dbManager {
             array_push($queriesToRun, "type = ?");
             $bindPol .= "s";
             array_push($queriesToBind, $keyVal[$key]);
+         } else if ($key == "id") {
+            return array($this->getArticleById($keyVal[$key]));
          }
       }
       if (count($queriesToRun) != 0) {
@@ -163,8 +165,9 @@ class dbManager {
       $query = "SELECT * FROM articles $queriesToRun ORDER BY date DESC";
       $query = $this->mysqlO->prepare($query);
       array_unshift($queriesToBind,$bindPol);
-      if (count($queriesToBind) == 2) 
+      if (count($queriesToBind) >= 2)  {
          call_user_func_array(array($query,"bind_param"),makeValuesReferenced($queriesToBind));
+      }
       
 
       $query->execute();
@@ -211,6 +214,7 @@ class dbManager {
         }
         $query .= implode(" OR ", $typeParams);
       }
+      $query .= " ORDER BY number";
       $query = $this->mysqlO->prepare($query);
       $query->execute();
       $res = $query->get_result();
